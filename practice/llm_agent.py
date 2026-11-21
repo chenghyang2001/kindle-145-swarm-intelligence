@@ -15,6 +15,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 
 TIMEOUT_SECONDS = 180
 
@@ -44,6 +45,7 @@ def ask(prompt: str) -> str:
             encoding="utf-8",
             timeout=TIMEOUT_SECONDS,
             env=_clean_env(),
+            cwd=tempfile.mkdtemp(prefix="llm_agent_cwd_"),  # 在暫存夾啟動，避免使用者全域 hook 把 .claude/ 寫進練習工作目錄
         )
     except subprocess.TimeoutExpired as exc:
         raise RuntimeError(f"claude -p 超過 {TIMEOUT_SECONDS} 秒未回應") from exc
