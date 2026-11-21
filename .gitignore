@@ -1,0 +1,13 @@
+# Python／執行期
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.claude/
+practice/**/.claude/
+# 當機殘留
+*.stackdump
+core
+*.core
+*.dmp
